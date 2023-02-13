@@ -1,11 +1,16 @@
 package com.sales.salesapi.entities;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_users")
 public class User {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
