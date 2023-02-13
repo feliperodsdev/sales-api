@@ -1,7 +1,7 @@
 package com.sales.salesapi.controllers;
 
-import com.sales.salesapi.entities.User;
-import com.sales.salesapi.services.UserService;
+import com.sales.salesapi.entities.Order;
+import com.sales.salesapi.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,22 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserController {
+@RequestMapping(value = "/orders")
+public class OrderController {
 
     @Autowired
-    private UserService userService;
+    private OrderService orderService;
 
     @GetMapping("/")
-    public ResponseEntity<List<User>> findAll(){
-        List<User> users = userService.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(users);
+    public ResponseEntity<Object> findAll(){
+        List<Order> orders = orderService.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(orders);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> findById(@PathVariable Long id){
-        User user = userService.findById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(user);
+        Order order = orderService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(order);
     }
 
 }
