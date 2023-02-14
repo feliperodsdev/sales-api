@@ -3,12 +3,15 @@ package com.sales.salesapi.entities;
 import com.sales.salesapi.enums.OrderStatus;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_orders")
-public class Order {
+public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -25,6 +28,7 @@ public class Order {
     public Order() {}
 
     public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+        super();
         this.id = id;
         this.moment = moment;
         this.client = client;
@@ -62,6 +66,7 @@ public class Order {
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus.getCode();
     }
+
 
     @Override
     public boolean equals(Object o) {
