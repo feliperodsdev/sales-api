@@ -18,7 +18,7 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<Object> findAll(){
         List<Category> categories = categoryService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(categories);
