@@ -25,6 +25,9 @@ public class Product {
     @JoinTable(name = "tb_category_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product(){}
 
     public Product(Long id, String name, String desc, Double price, String imgUrl) {
@@ -77,6 +80,15 @@ public class Product {
 
     public Set<Category> getCategories() {
         return categories;
+    }
+
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> orders = new HashSet<>();
+        for(OrderItem actual: items){
+            orders.add(actual.getOrder());
+        }
+        return orders;
     }
 
     @Override

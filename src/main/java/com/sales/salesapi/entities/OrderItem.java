@@ -13,6 +13,7 @@ public class OrderItem {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
+    @JsonIgnore
     private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
@@ -60,6 +61,10 @@ public class OrderItem {
 
     public void setProduct(Product product) {
         id.setProduct(product);
+    }
+
+    public Product getProduct() {
+        return id.getProduct();
     }
 
     @JsonIgnore
